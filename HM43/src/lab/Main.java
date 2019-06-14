@@ -1,8 +1,15 @@
 package lab;
 
-// HM43
-// Модифицированный метод Гаусса
-
+/**
+ * Лабораторная работа №3
+ * <p>
+ * HM43.
+ * Модифицированный метод Гаусса.
+ * {1.0, x, x, x},
+ * {0.0, 1.0, x, x},
+ * {0.0, 0.0, 1.0, x},
+ * {0.0, 0.0, 0.0, 1.0},
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -57,7 +64,7 @@ public class Main {
     public static void gaussM(double[] x, double[][] z, double[] y, int n) {
         double[][] a = new double[n][n];
         double[] b = new double[n];
-        System.arraycopy(z, 0, a, 0, z.length);
+        a = cloneArray(z);
         System.arraycopy(y, 0, b, 0, y.length);
 
         printMV("GaussM", a,b,n);
@@ -81,7 +88,7 @@ public class Main {
 
         // Часть 2
         // перевернули матрицу так, что левый верхний элемент оказался справа снизу
-        x[n - 1] = b[n-1];
+        x[n - 1] = b[n - 1];
         for (int i = n - 2; i >= 0; i--) {
             double s = 0.0;
             for (int j = i + 1; j < n; j++) {
@@ -89,5 +96,16 @@ public class Main {
             }
             x[i] = b[i] - s;
         }
+    }
+
+    private static double[][] cloneArray(double[][] source) {
+        int length = source.length;
+        double[][] clonedArray = new double[length][source[0].length];
+
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(source[i], 0, clonedArray[i], 0, source[i].length);
+        }
+
+        return clonedArray;
     }
 }

@@ -1,9 +1,10 @@
 package lab;
 
-import java.util.Scanner;
-
-//Метод Гаусса
-
+/**
+ * Лабораторная работа №1.
+ * <p>
+ * Метод Гаусса
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -29,14 +30,6 @@ public class Main {
         for (int i = 0; i < N; i++) {
             System.out.println(String.format("%8.2f", x[i]));
         }
-
-
-
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Wait for a symbol>>>");
-//        sc.next();
-
-
     }
 
     public static void printMV(String text, double[][] a, double[] b, int n) {
@@ -54,9 +47,9 @@ public class Main {
 
     public static double[] gauss(double[] x, double[][] z, double[] y, int n) {
         double[][] a = new double[n][n];
-        a = z.clone();
+        a = cloneArray(z);
         double[] b = new double[n];
-        b = y.clone();
+        System.arraycopy(y, 0, b, 0, y.length);
         printMV("Gauss", a, b, n);
 
         //Часть 1
@@ -82,5 +75,16 @@ public class Main {
             x[i] = (b[i] - s) / a[i][i];
         }
         return x;
+    }
+
+    private static double[][] cloneArray(double[][] source) {
+        int length = source.length;
+        double[][] clonedArray = new double[length][source[0].length];
+
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(source[i], 0, clonedArray[i], 0, source[i].length);
+        }
+
+        return clonedArray;
     }
 }

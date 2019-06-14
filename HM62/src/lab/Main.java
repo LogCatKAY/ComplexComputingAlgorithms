@@ -1,8 +1,11 @@
 package lab;
 
-// HM62
-// Обратная матрица Гаусса
-
+/**
+ * Лабораторная работа №5.
+ * HM62
+ * <p>
+ * Обратная матрица Гаусса.
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -66,7 +69,7 @@ public class Main {
 
     public static void gaussR(double[][] R, double[][] z, int n) {
         double[][] a = new double[n][n];
-        a = z.clone();
+        a = cloneArray(z);
         printM("GaussR", a, n);
 
         for (int i = 0; i < n; i++) {
@@ -120,5 +123,16 @@ public class Main {
 
         printM("Top And Bottom A", a,n);
         printM("Matrix R", R, n);
+    }
+
+    private static double[][] cloneArray(double[][] source) {
+        int length = source.length;
+        double[][] clonedArray = new double[length][source[0].length];
+
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(source[i], 0, clonedArray[i], 0, source[i].length);
+        }
+
+        return clonedArray;
     }
 }

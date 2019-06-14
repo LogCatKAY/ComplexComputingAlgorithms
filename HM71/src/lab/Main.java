@@ -1,8 +1,11 @@
 package lab;
 
-//HM71
-//Метод Фаддеева
-
+/**
+ * Лабораторная работа №6.
+ * HM71
+ * <p>
+ * Метод Фаддеева.
+ */
 public class Main {
 
     public static void main(String[] args) {

@@ -1,8 +1,15 @@
 package lab;
 
-// HM43
-// Модифицированный метод Гаусса
-
+/**
+ * Лабораторная работа №4.
+ * <p>
+ * HM44
+ * Метод Гаусса. Модифицированный верхний\нижний треугольник.
+ * {1.0, x, x, x}, {x}
+ * {0.0, 1.0, x, x}, {x}
+ * {0.0, 0.0, 1.0, x}, {x}
+ * {0.0, 0.0, 0.0, 1.0}, {x}
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -57,7 +64,7 @@ public class Main {
     public static void gaussMTB(double[] x, double[][] z, double[] y, int n) {
         double[][] a = new double[n][n];
         double[] b = new double[n];
-        System.arraycopy(z, 0, a, 0, z.length);
+        a = cloneArray(z);
         System.arraycopy(y, 0, b, 0, y.length);
 
         printMV("GaussMTB", a,b,n);
@@ -89,5 +96,16 @@ public class Main {
 
         System.arraycopy(b, 0, x, 0, n);
         printMV("GaussMTB", a,b,n);
+    }
+
+    private static double[][] cloneArray(double[][] source) {
+        int length = source.length;
+        double[][] clonedArray = new double[length][source[0].length];
+
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(source[i], 0, clonedArray[i], 0, source[i].length);
+        }
+
+        return clonedArray;
     }
 }
